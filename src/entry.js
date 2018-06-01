@@ -4,6 +4,10 @@ export function Entry(title, text) {
 }
 
 Entry.prototype.numberOfWords = function() {
-  var words = this.text.split(" ");
+  var text = this.text;
+  if (text.length === 0) {
+    return 0;
+  }
+  var words = text.split(" ");
   return words.length;
 };
