@@ -1,4 +1,7 @@
-export function getVowels(text) {
-  var matches = text.match(/[aeiou]/gi);
-  return matches === null ? 0 : matches.length;
+export function getLetterCount(text) {
+  var count = re => (text.match(re) || []).length;
+  var vowels = count(/[aeiou]/ig);
+  var consonants = count(/[bcdfghjklmnpqrstvxzwy]/ig);
+
+  return [vowels, consonants];
 }
