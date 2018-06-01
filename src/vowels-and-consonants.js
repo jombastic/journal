@@ -5,3 +5,8 @@ export function getLetterCount(text) {
 
   return [vowels, consonants];
 }
+
+export function getTeaser(text) {
+  var teaser = text.split(" ").slice(0, 9);
+  return teaser.join(" ");
+}
