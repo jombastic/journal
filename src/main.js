@@ -1,5 +1,5 @@
 import { Entry } from "./entry.js";
-import { getVowels } from "./vowels-and-consonants.js";
+import { getLetterCount } from "./vowels-and-consonants.js";
 
 $(function() {
   $("form#journal").submit(function(event) {
@@ -9,9 +9,12 @@ $(function() {
     var body = $("textarea#journal-body").val();
     var journalEntry = new Entry(title, body);
     var numberOfWords = journalEntry.numberOfWords();
-    var numberOfVowels = getVowels(journalEntry.text);
+    var numOfletters = getLetterCount(journalEntry.text);
+    var numberOfVowels = numOfletters[0];
+    var numberOfConsonants = numOfletters[1];
 
     $(".number-of-words").text(numberOfWords);
     $(".number-of-vowels").text(numberOfVowels);
+    $(".number-of-consonants").text(numberOfConsonants);
   });
 });
