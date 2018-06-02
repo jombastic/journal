@@ -20,10 +20,26 @@ function addEntry(entry, numOfLetters, teaser) {
                         '</div>');
 }
 
+function setWarning(title, body) {
+  if (!title && !body) {
+    $("#journal-title, #journal-body").parents(".form-group")
+      .addClass("has-error");
+    return true;
+  } else if (!title) {
+    $("#journal-title").parents(".form-group").addClass("has-error");
+    return true;
+  } else if (!body) {
+    $("#journal-body").parents(".form-group").addClass("has-error");
+    return true;
+  } else {
+    return false;
+  }
+}
+
 $(function() {
   $("#journal-title, #journal-body").keyup(function() {
-    $(this).parents(".form-group")
-    .addClass("has-success");
+    $(this).parents(".form-group").removeClass("has-error")
+      .addClass("has-success");
   });
 
   $("form#journal").submit(function(event) {
@@ -31,13 +47,15 @@ $(function() {
 
     var title = $("input#journal-title").val();
     var body = $("textarea#journal-body").val();
-    var journalEntry = new Entry(title, body);
+    if (!setWarning(title, body)) {
+      var journalEntry = new Entry(title, body);
 
-    var numOfLetters = getLetterCount(journalEntry.text);
-    var teaser = getTeaser(journalEntry.text);
+      var numOfLetters = getLetterCount(journalEntry.text);
+      var teaser = getTeaser(journalEntry.text);
 
-    addEntry(journalEntry, numOfLetters, teaser);
-    $("#journal-title, #journal-body").val("").parents(".form-group")
-    .removeClass("has-success");
+      addEntry(journalEntry, numOfLetters, teaser);
+      $("#journal-title, #journal-body").val("").parents(".form-group")
+        .removeClass("has-success");
+    }
   });
 });
