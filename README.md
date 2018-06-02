@@ -18,6 +18,12 @@ and displayed in Bootstrap panels.
 
 * To open the webpage in your browser [visit this link](https://jombastic.github.io/journal/)
 * To download the code click **clone or download** button on Github or enter the command "git clone https://github.com/jombastic/journal" in your shell
+* Scripts:
+  * To build the dist folder enter 'npm run build' in the command line
+  * To start the dev-server enter 'npm run start' in the command line
+  * To start eslint enter 'npm run start' in the command line
+  * To build AND start the dev-server enter 'npm run execute' in the command line
+
 
 ## Known Bugs
 * No known bugs at this time.
