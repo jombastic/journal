@@ -1,6 +1,8 @@
 import { Entry } from "./entry.js";
 import { getLetterCount, getTeaser } from "./vowels-and-consonants.js";
 import './styles.css';
+import 'jquery';
+import 'bootstrap/dist/js/bootstrap';
 
 function addEntry(entry, numOfLetters, teaser) {
   var numberOfVowels = numOfLetters[0];
