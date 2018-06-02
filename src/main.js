@@ -4,7 +4,7 @@ import { getLetterCount, getTeaser } from "./vowels-and-consonants.js";
 function addEntry(entry, numOfLetters, teaser) {
   var numberOfVowels = numOfLetters[0];
   var numberOfConsonants = numOfLetters[1];
-  $("#entries").append('<div class="panel panel-default">' +
+  $("#entries").append('<div class="panel panel-info">' +
                           '<div class="panel-heading">' +
                             '<h3 class="panel-title">' + entry.title +
                             ': ' + teaser + '</h3>' +
@@ -12,15 +12,20 @@ function addEntry(entry, numOfLetters, teaser) {
                           '<div class="panel-body">'
                             + entry.text +
                           '</div>' +
-                          '<div class="panel-footer">' +
+                          '<div class="panel-footer"><small>' +
                           '<p>Number of words: ' + entry.numberOfWords() + '</p>' +
                           '<p>Number of vowels: ' + numberOfVowels + '</p>' +
                           '<p>Number of consonants: ' + numberOfConsonants + '</p>' +
-                          '</div>' +
+                          '<small></div>' +
                         '</div>');
 }
 
 $(function() {
+  $("#journal-title, #journal-body").keyup(function() {
+    $(this).parents(".form-group")
+    .addClass("has-success");
+  });
+
   $("form#journal").submit(function(event) {
     event.preventDefault();
 
@@ -32,5 +37,7 @@ $(function() {
     var teaser = getTeaser(journalEntry.text);
 
     addEntry(journalEntry, numOfLetters, teaser);
+    $("#journal-title, #journal-body").val("").parents(".form-group")
+    .removeClass("has-success");
   });
 });
